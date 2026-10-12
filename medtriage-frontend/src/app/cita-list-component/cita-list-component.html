@@ -1,0 +1,57 @@
+<main class="dashboard">
+  <h1>Lista de citas</h1>
+
+  <div class="filtros">
+    <button
+      *ngFor="let prioridad of ['TODAS', 'ALTA', 'MEDIA', 'BAJA']"
+      [class.activo]="prioridadSeleccionada() === prioridad"
+      (click)="filtrarPorPrioridad(prioridad)"
+    >
+      {{ prioridad }}
+    </button>
+  </div>
+
+  <p class="error" *ngIf="mensajeError()">{{ mensajeError() }}</p>
+
+  <div class="tabla-contenedor">
+    <table>
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Paciente</th>
+          <th>Doctor</th>
+          <th>Prioridad</th>
+          <th>Motivo</th>
+          <th>Estado</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cita of citasFiltradas()">
+          <td>{{ cita.codigo_cita }}</td>
+          <td>{{ cita.paciente_id }}</td>
+          <td>{{ cita.doctor_id }}</td>
+          <td>{{ cita.nivel_prioridad }}</td>
+          <td>{{ cita.motivo_consulta }}</td>
+          <td>
+            <span class="badge" [class]="cita.estado.toLowerCase()">
+              {{ cita.estado }}
+            </span>
+          </td>
+          <td>
+            <button
+              class="boton-estado"
+              (click)="avanzarEstado(cita)"
+              [disabled]="!obtenerSiguienteEstado(cita.estado)"
+            >
+              Avanzar estado
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="citasFiltradas().length === 0">
+          <td class="sin-citas" colspan="7">No hay citas para mostrar.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</main>

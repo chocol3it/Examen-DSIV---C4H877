@@ -53,7 +53,7 @@ public class CitaMedicaService {
 
         citaMedica.setDoctor_id(doctor);
         citaMedica.setMotivo_consulta(crearCitaDTO.getMotivoConsulta());
-        citaMedica.setEstado("PENDIENTE");
+        citaMedica.setNivel_priodidad("PENDIENTE");
         citaMedica.setMonto_consulta(crearCitaDTO.getMontoConsulta());
         return convertirADTO(citaMedicaRepository.save(citaMedica));
     }
