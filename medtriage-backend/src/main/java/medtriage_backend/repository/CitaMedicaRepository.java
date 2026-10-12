@@ -13,5 +13,5 @@ public interface CitaMedicaRepository extends JpaRepository<CitaMedica, Long> {
 
     List<CitaMedica> findByNivelPrioridad(@Param("nivelPrioridad") String nivelPrioridad);
 
-    List<CitaMedica> findAllByOrderByFechaCitaDesc();
+    List<CitaMedica> findAllByOrderByFecha_citaDesc();
 }

@@ -31,7 +31,7 @@ public class CitaMedicaService {
 
     @Transactional 
     public List<CitaMedica> obtenerTodas() {
-        return citaMedicaRepository.findAllByOrderByFechaCitaDesc();
+        return citaMedicaRepository.findAllByOrderByFecha_citaDesc();
     }
 
     @Transactional 
